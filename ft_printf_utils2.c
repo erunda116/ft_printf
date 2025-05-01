@@ -1,29 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printhexadec.c                                  :+:      :+:    :+:   */
+/*   ft_printf_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 14:55:25 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 16:30:17 by miakubov         ###   ########.fr       */
+/*   Created: 2025/05/01 16:04:08 by miakubov          #+#    #+#             */
+/*   Updated: 2025/05/01 16:16:40 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printhexadec(unsigned int n, char format)
+int count_digit(unsigned int n)
 {
-    char *hex;
+    int counter;
+
+    counter = 0;
+    while (n != 0)
+    {
+        n = n / 10;
+        counter++;
+    }
+    return (counter);
+}
+char *ft_uitoa(unsigned int n)
+{
+    char *res;
     int len;
 
-    len = 0;
-    if (format == 'x')
-        hex = "0123456789abcdef";
-    else if (format == 'X')
-        hex = "0123456789ABCDEF";
-    
-    if (n >= 16)
-		ft_printhexadec(n / 16, format); 
-	write(1, &hex[n % 16], 1); 
+    len = count_digit(n);
+    res = malloc((len + 1) * sizeof (char));
+    if (!res)
+        return (NULL);
+    res[len] = '\0';
+	while (len--)
+	{
+		res[len] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (res);
 }
+

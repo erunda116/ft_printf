@@ -6,7 +6,7 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:27:22 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 15:15:17 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/01 16:21:16 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ int	print_format(va_list arg_ptr, char format)
     else if (format == 'p')
         returning_val += ft_printpointer(va_arg(arg_ptr, unsigned long));
     else if (format == 'd' || format == 'i')
-        returning_val += ft_printdigit();
+        returning_val += ft_printdigit(va_arg(arg_ptr, int));
     else if (format == 'u')
-        returning_val += ft_printu();
+        returning_val += ft_printu(va_arg(arg_ptr, unsigned int));
     else if (format == 'x' || format ==  'X')
-        returning_val += ft_printhexadec();
+        returning_val += ft_printhexadec(va_arg(arg_ptr, unsigned int), format);
     else if (format == '%')
         returning_val += ft_printpercent();
     return (returning_val);
@@ -64,4 +64,8 @@ int main()
     count_or = printf("test %s", "string");
     ft_printf("%d", count);
     printf("%d", count_or);
+
+    //pointer
+    //char *ptr = NULL;
+    //printf("%p", ptr);
 }
