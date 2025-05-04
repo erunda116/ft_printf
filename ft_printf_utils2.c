@@ -6,34 +6,37 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:04:08 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 16:16:40 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:06:41 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int count_digit(unsigned int n)
+int	count_digit(unsigned int n)
 {
-    int counter;
+	int	counter;
 
-    counter = 0;
-    while (n != 0)
-    {
-        n = n / 10;
-        counter++;
-    }
-    return (counter);
+	if (n == 0)
+		return (1);
+	counter = 0;
+	while (n != 0)
+	{
+		n = n / 10;
+		counter++;
+	}
+	return (counter);
 }
-char *ft_uitoa(unsigned int n)
-{
-    char *res;
-    int len;
 
-    len = count_digit(n);
-    res = malloc((len + 1) * sizeof (char));
-    if (!res)
-        return (NULL);
-    res[len] = '\0';
+char	*ft_uitoa(unsigned int n)
+{
+	char	*res;
+	int		len;
+
+	len = count_digit(n);
+	res = malloc((len + 1) * sizeof (char));
+	if (!res)
+		return (NULL);
+	res[len] = '\0';
 	while (len--)
 	{
 		res[len] = (n % 10) + '0';
@@ -41,4 +44,3 @@ char *ft_uitoa(unsigned int n)
 	}
 	return (res);
 }
-

@@ -6,32 +6,28 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:53:48 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 15:44:42 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:47:47 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printpointer(void *ptr)
+int	ft_printpointer(unsigned long ptr)
 {
-    unsigned long address;
-    int i;
+	int	i;
 
-    if (!ptr)
+	if (!ptr)
 	{
-		ft_putstr("0x0"); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		return (3);
+		ft_putstr("(nil)");
+		return (5);
 	}
-    address = (unsigned long)ptr;
-
-    ft_putstr("0x");
-    ft_puthex(address);
-
-    i = 2;
-    while (address)
-    {
-        address /= 16;
-        i++;
-    }
-    return (i);
+	ft_putstr("0x");
+	ft_puthex(ptr);
+	i = 2;
+	while (ptr)
+	{
+		ptr /= 16;
+		i++;
+	}
+	return (i);
 }

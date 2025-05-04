@@ -6,13 +6,13 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:34:57 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 14:41:17 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:44:30 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printchar(int c)
+int	ft_printchar(int c)
 {
 	write(1, &c, 1);
 	return (1);

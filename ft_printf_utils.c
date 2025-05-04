@@ -6,7 +6,7 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:03:32 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 16:01:44 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/04 19:02:51 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ void	ft_putstr(char *str)
 	}
 }
 
-void ft_puthex(unsigned long ptr)
+void	ft_puthex(unsigned long ptr)
 {
-    char *hex = "0123456789abcdef";
+	char	*hex;
 
-    if (ptr >= 16)
-        ft_puthex(ptr / 16);
-    write(1, &hex[ptr % 16], 1);
+	hex = "0123456789abcdef";
+	if (ptr >= 16)
+		ft_puthex(ptr / 16);
+	write(1, &hex[ptr % 16], 1);
 }
+
 int	check_len(int n)
 {
 	int	n_copy;
@@ -67,11 +69,11 @@ void	fill_num(char *res, long int n, int counter)
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		counter;
-    long int    num;
-	
-    num = n;
+	char				*res;
+	long int			num;
+	int					counter;
+
+	num = n;
 	if (num == 0)
 	{
 		res = malloc(2 * sizeof(char));

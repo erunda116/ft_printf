@@ -6,14 +6,14 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:55:53 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/01 14:58:31 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/04 18:51:54 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printpercent(void)
+int	ft_printpercent(void)
 {
-    write(1, "%", 1);
-    return (1);
+	write(1, "%", 1);
+	return (1);
 }
