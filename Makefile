@@ -9,7 +9,6 @@ SRC		= ft_printchar.c \
 		ft_printf_utils2.c \
 		ft_printf.c
 OBJ		= ${SRC:.c=.o}
-OBJ_BONUS	= ${SRC_BONUS:.c=.o}
 NAME		= libftprintf.a
 HEADER		= ft_printf.h
 CC			= cc 
@@ -29,6 +28,6 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re
 
 

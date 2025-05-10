@@ -6,7 +6,7 @@
 /*   By: miakubov <miakubov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:27:22 by miakubov          #+#    #+#             */
-/*   Updated: 2025/05/04 19:37:40 by miakubov         ###   ########.fr       */
+/*   Updated: 2025/05/10 15:03:38 by miakubov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,35 @@ int	print_format(va_list arg_ptr, char format)
 		returning_val += ft_printhexadec(va_arg(arg_ptr, unsigned int), format);
 	else if (format == '%')
 		returning_val += ft_printpercent();
+	else
+		return (-1);
 	return (returning_val);
+}
+
+int	check_if_string_is_valid(char *format)
+{
+	int		i;
+	char	next;
+
+	i = 0;
+	if (format == NULL)
+		return (-1);
+	while (format[i] != '\0')
+	{
+		if (format[i] == '%' && format[i + 1] != '\0')
+		{
+			next = format[i + 1];
+			if (!(next == 'c' || next == 's' || next == 'p'
+					|| next == 'd' || next == 'u' || next == 'i'
+					|| next == 'x' || next == 'X' || next == '%'))
+			{
+				return (-1);
+			}
+			i++;
+		}
+		i++;
+	}
+	return (1);
 }
 
 int	ft_printf(const char *format, ...)
@@ -43,6 +71,11 @@ int	ft_printf(const char *format, ...)
 	returning_val = 0;
 	i = 0;
 	va_start(arg_ptr, format);
+	if (check_if_string_is_valid((char *)format) == -1)
+	{
+		va_end(arg_ptr);
+		return (-1);
+	}
 	while (format[i] != '\0')
 	{
 		if (format[i] == '%' && format[i + 1] != '\0')
@@ -57,6 +90,7 @@ int	ft_printf(const char *format, ...)
 	va_end(arg_ptr);
 	return (returning_val);
 }
+
 /*
 #include <stdio.h>
 #include <limits.h>
@@ -65,7 +99,7 @@ int main()
     int count;
     int count_original;
     char *ptr = "tester";
-    char *ptr2 = 0xFFFFFFFF0;
+    unsigned int ptr2 = 0xFFFFFFFF;
     char *ptrNull = NULL;
 
     count = ft_printf("This is char %c, we print it\n", 't');
@@ -176,4 +210,32 @@ int main()
     count_original = printf("%X\n", ptr2);
     ft_printf("Lenght of count = %d\n", count);
     printf("Lenght of count = %d\n", count_original);
-}*/
+
+    // ft_printf("\n================\n");
+
+    // count = ft_printf("test string %w%j%yb test string\n", "test");
+    // count_original = printf("test string %w%j%yb test string\n", "test");
+    // ft_printf("Lenght of count = %d\n", count);
+    // printf("Lenght of count = %d\n", count_original);
+
+    //  ft_printf("\n================\n");
+
+    // count = ft_printf("\n", "test");
+    // count_original = printf("\n", "test");
+    // ft_printf("Lenght of count = %d\n", count);
+    // printf("Lenght of count = %d\n", count_original);
+
+     ft_printf("\n================\n");
+
+    count = ft_printf(NULL, "test");
+    count_original = printf(NULL, "test");
+    ft_printf("Lenght of count = %d\n", count);
+    printf("Lenght of count = %d\n", count_original);
+ 
+     ft_printf("\n================\n");
+
+    count = ft_printf("tester\n", NULL);
+    count_original = printf("tester\n", NULL);
+    ft_printf("Lenght of count = %d\n", count);
+    printf("Lenght of count = %d\n", count_original);
+} */
